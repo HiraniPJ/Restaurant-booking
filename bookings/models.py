@@ -9,7 +9,7 @@ class Table(models.Model):
     def __str__(self):
         return f"Table {self.number} (Seats {self.capacity})"
     
-class Reservations(models.Model):
+class Reservation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     table = models.ForeignKey(Table, on_delete=models.CASCADE)
     date = models.DateField()
