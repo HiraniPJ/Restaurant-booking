@@ -5,6 +5,7 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from .forms import ReservationForm
 from .models import Reservation
+from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
@@ -43,3 +44,11 @@ def make_reservation(request):
 def my_reservations(request):
   reservations = Reservation.objects.filter(user=request.user)
   return render(request, 'bookings/my_reservations.html', {'reservations': reservations})
+
+@login_required
+def delete_reservation(request, reservation_id):
+  reservation = get_object_or_404(Reservation, id=reservation_id, user=request.user)
+  if request.method == 'POST':
+       reservation.delete()
+       return redirect('my_reservations')
+  return render(request, 'bookings/confirm_delete.html', {'reservation': reservation})
