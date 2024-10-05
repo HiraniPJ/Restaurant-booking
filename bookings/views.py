@@ -65,3 +65,4 @@ def edit_reservation(request, reservation_id):
       form = ReservationForm(instance=reservation)
   return render(request, 'bookings/edit_reservation.html', {'form': form, 'reservation': reservation})    
 
+
