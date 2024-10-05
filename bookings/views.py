@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from .forms import ReservationForm
+from .models import Reservation
 
 
 # Create your views here.
@@ -38,3 +39,7 @@ def make_reservation(request):
         form = ReservationForm()
   return render(request, 'bookings/make_reservation.html', {'form': form})
 
+@login_required
+def my_reservations(request):
+  reservations = Reservation.objects.filter(user=request.user)
+  return render(request, 'bookings/my_reservations.html', {'reservations': reservations})
