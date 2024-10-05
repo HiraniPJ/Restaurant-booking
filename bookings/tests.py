@@ -2,6 +2,7 @@ from django.test import TestCase
 from .models import Table, Reservation
 from django.urls import reverse
 from django.contrib.auth.models import User
+from datetime import date, time
 from .forms import ReservationForm
 
 
@@ -71,8 +72,8 @@ class ViewTests(BaseTestCase):
         })
         self.assertEqual(response.status_code, 302)
         self.reservation.refresh_from_db()
-        self.assertEqual(self.reservation.date, "2024-10-15")
-        self.assertEqual(self.reservation.time, "20:00")
+        self.assertEqual(self.reservation.date, date(2024, 10, 15))
+        self.assertEqual(self.reservation.time, time(20, 0))
 
     def test_delete_reservation(self):
         # Test deleting a reservation
@@ -80,3 +81,27 @@ class ViewTests(BaseTestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Reservation.objects.count(), 0)
         
+#Form Tests
+class FormTests(BaseTestCase):
+
+    def test_reservation_form_valid(self):
+        #Test if valid form is accepted
+        form_data = {
+            'table': self.table.id,
+            'date': '2024-10-10',
+            'time': '18:00',
+            'guests': 2
+        }
+        form = ReservationForm(data=form_data)
+        self.assertTrue(form.is_valid())
+    
+    def test_reservation_form_invalid(self):
+        #Test if invalid form is rejected
+        form_data = {
+            'table': '',
+            'date': '',
+            'time': '18:00',
+            'guests': 2
+        }
+        form = ReservationForm(data=form_data)
+        self.assertFalse(form.is_valid())
