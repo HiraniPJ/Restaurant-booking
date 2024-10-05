@@ -7,10 +7,10 @@
 </head>
 <body>
     <p>Edit Reservation for Table {{ reservation.table.number }}</p>
-    <form method="post">
+    <form method="post" class="form-group">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Save Changes</button>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
     </form>
     <a href="{% url 'my_reservations' %}">Cancel</a>
 </body>
