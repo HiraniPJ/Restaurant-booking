@@ -1,9 +1,11 @@
 from django.test import TestCase
 from .models import Table, Reservation
 from django.urls import reverse
+from django.urls import resolve
 from django.contrib.auth.models import User
 from datetime import date, time
 from .forms import ReservationForm
+
 
 
 #Base Test Case
@@ -118,24 +120,24 @@ class URLTests(BaseTestCase):
     def test_home_url_resolves(self):
         #Test home page URL resolves
         url = reverse('home')
-        self.assertEqual(url, '/')
+        self.assertEqual(resolve(url).func.__name__, 'home')
     
     def test_make_reservation_url_resolves(self):
         #Test reservation URL resolves
         url = reverse('make_reservation')
-        self.assertEqual(url, '/reserve/')
+        self.assertEqual(resolve(url).func.__name__, 'make_reservation')
 
     def test_my_reservation_url_resolves(self):
         #Test my reservation URL resolves
         url = reverse('my_reservation')
-        self.assertEqual(url, '/my_reservations/')
+        self.assertEqual(resolve(url).func.__name__, 'my_reservations')
 
     def test_edit_reservation_url_resolves(self):
         #Test edit reservation URL resolves
         url = reverse('edit_reservation', args=[1])
-        self.assertEqual(url, '/edit_reservation/')
+        self.assertEqual(resolve(url).func.__name__, 'edit_reservation')
 
     def test_delete_reservation_url_resolves(self):
         #Test delete reservation URL resolves
         url = reverse('delete_reservation', args=[1])
-        self.assertEqual(url, '/delete_reservation/')
+        self.assertEqual(resolve(url).func.__name__, 'delete_reservation')
