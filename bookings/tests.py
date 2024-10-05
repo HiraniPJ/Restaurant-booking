@@ -2,6 +2,7 @@ from django.test import TestCase
 from .models import Table, Reservation
 from django.urls import reverse
 from django.contrib.auth.models import User
+from .forms import ReservationForm
 
 
 #Base Test Case
@@ -15,9 +16,15 @@ class BaseTestCase(TestCase):
         self.table = Table.objects.create(number=1, capacity=4)
 
         # Create a test reservation
-        self.reservation = Reservation.objects.create(user=self.user, table=self.table, date="2024-10-10", time="18:00", guests=2)
+        self.reservation = Reservation.objects.create(
+            user=self.user, 
+            table=self.table, 
+            date="2024-10-10", 
+            time="18:00", 
+            guests=2
+        )
    
-#Model Test
+#Model Tests
 class ModelTests(BaseTestCase):
     
     def test_reservation_creation(self):
@@ -26,9 +33,9 @@ class ModelTests(BaseTestCase):
 
     def test_table_creation(self):
         # Test table model creation
-        self.assertEqual(str(self.table), "Table 2 (Seats 6)")
+        self.assertEqual(str(self.table), "Table 1 (Seats 4)")
 
-#View Test
+#View Tests
 class ViewTests(BaseTestCase):
 
     def test_home_page(self):
@@ -54,6 +61,22 @@ class ViewTests(BaseTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Reservation for testuser")
 
-    #def test_edit_reservation(self):
-    
-    #def test_delete_reservation(self):
+    def test_edit_reservation(self):
+        # Test Editing and existing reservation
+        response = self.client.post(reverse('edit_reservation', args=[self.reservation.id]), {
+            'table': self.table.id,
+            'date': '2024-10-15',
+            'time': '20:00',
+            'guests': 2
+        })
+        self.assertEqual(response.status_code, 302)
+        self.reservation.refresh_from_db()
+        self.assertEqual(self.reservation.date, "2024-10-15")
+        self.assertEqual(self.reservation.time, "20:00")
+
+    def test_delete_reservation(self):
+        # Test deleting a reservation
+        response = self.client.post(reverse('delete_reservation', args=[self.reservation.id]))
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(Reservation.objects.count(), 0)
+        
