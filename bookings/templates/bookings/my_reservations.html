@@ -12,6 +12,7 @@
         <li>
             Table {{ reservation.table.number }} on {{ reservation.date }} at {{ reservation.time }}
             (Guests: {{ reservation.guests }})
+            <a href="{% url 'edit_reservation' reservation.id %}">Edit</a> |
             <a href="{% url 'delete_reservation' reservation.id %}">Delete</a>
         </li>
         {% endfor %}

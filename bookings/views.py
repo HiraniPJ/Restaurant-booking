@@ -52,3 +52,16 @@ def delete_reservation(request, reservation_id):
        reservation.delete()
        return redirect('my_reservations')
   return render(request, 'bookings/confirm_delete.html', {'reservation': reservation})
+
+@login_required
+def edit_reservation(request, reservation_id):
+  reservation = get_object_or_404(Reservation, id=reservation_id, user=request.user)
+  if request.method == 'POST':
+     form = ReservationForm(request.POST, instance=reservation)
+     if form.is_valid():
+        form.save()
+        return redirect('my_reservations')
+  else: 
+      form = ReservationForm(instance=reservation)
+  return render(request, 'bookings/edit_reservation.html', {'form': form, 'reservation': reservation})    
+
