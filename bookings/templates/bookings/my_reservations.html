@@ -10,8 +10,9 @@
     <ul>
         {% for reservation in reservations %}
         <li>
-            Table {{ reservation.table.number }} on {{ reservation.date }} at {{ reservation.time }}
-            (Guests: {{ reservation.guests }})
+            <span>Table {{ reservation.table.number }}</span> on 
+            <span>{{ reservation.date }}</span> at <span>{{ reservation.time }}</span>
+            (Guests: <span>{{ reservation.guests }}</span>)
             <a href="{% url 'edit_reservation' reservation.id %}">Edit</a> |
             <a href="{% url 'delete_reservation' reservation.id %}">Delete</a>
         </li>
