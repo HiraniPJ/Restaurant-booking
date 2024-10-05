@@ -61,6 +61,8 @@ class ViewTests(BaseTestCase):
         # Test viewing a user's reservations
         response = self.client.get(reverse('my_reservations'))
         self.assertEqual(response.status_code, 200)
+
+        # Specific reservation details
         self.assertContains(response, "Table 1")
         self.assertContains(response, "2024-10-10")
         self.assertContains(response, "18:00")
@@ -111,3 +113,29 @@ class FormTests(BaseTestCase):
         self.assertFalse(form.is_valid())
 
 #URL Tests
+class URLTests(BaseTestCase):
+
+    def test_home_url_resolves(self):
+        #Test home page URL resolves
+        url = reverse('home')
+        self.assertEqual(url, '/')
+    
+    def test_make_reservation_url_resolves(self):
+        #Test reservation URL resolves
+        url = reverse('make_reservation')
+        self.assertEqual(url, '/reserve/')
+
+    def test_my_reservation_url_resolves(self):
+        #Test my reservation URL resolves
+        url = reverse('my_reservation')
+        self.assertEqual(url, '/my_reservations/')
+
+    def test_edit_reservation_url_resolves(self):
+        #Test edit reservation URL resolves
+        url = reverse('edit_reservation', args=[1])
+        self.assertEqual(url, '/edit_reservation/')
+
+    def test_delete_reservation_url_resolves(self):
+        #Test delete reservation URL resolves
+        url = reverse('delete_reservation', args=[1])
+        self.assertEqual(url, '/delete_reservation/')
