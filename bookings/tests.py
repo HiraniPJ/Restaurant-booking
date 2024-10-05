@@ -34,7 +34,8 @@ class ModelTests(BaseTestCase):
 
     def test_table_creation(self):
         # Test table model creation
-        self.assertEqual(str(self.table), "Table 1 (Seats 4)")
+        table = Table.objects.create(number=2, capacity=6)
+        self.assertEqual(str(table), "Table 2 (Seats 6)")
 
 #View Tests
 class ViewTests(BaseTestCase):
@@ -60,7 +61,10 @@ class ViewTests(BaseTestCase):
         # Test viewing a user's reservations
         response = self.client.get(reverse('my_reservations'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Reservation for testuser")
+        self.assertContains(response, "Table 1")
+        self.assertContains(response, "2024-10-10")
+        self.assertContains(response, "18:00")
+        self.assertContains(response, "(Guests: 2)")
 
     def test_edit_reservation(self):
         # Test Editing and existing reservation
@@ -105,3 +109,5 @@ class FormTests(BaseTestCase):
         }
         form = ReservationForm(data=form_data)
         self.assertFalse(form.is_valid())
+
+#URL Tests
