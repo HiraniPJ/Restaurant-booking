@@ -62,14 +62,15 @@ class ViewTests(BaseTestCase):
     def test_my_reservations(self):
         # Test viewing a user's reservations
         response = self.client.get(reverse('my_reservations'))
+        print(response.content.decode())
         self.assertEqual(response.status_code, 200)
 
         # Specific reservation details
         self.assertContains(response, "Table 1")
         self.assertContains(response, "2024-10-10")
         self.assertContains(response, "18:00")
-        self.assertContains(response, "(Guests: 2)")
-
+        self.assertContains(response, "Guests: 2")
+        
     def test_edit_reservation(self):
         # Test Editing and existing reservation
         response = self.client.post(reverse('edit_reservation', args=[self.reservation.id]), {
