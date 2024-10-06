@@ -8,16 +8,19 @@
 <body>
     <h1 class="text-center">My Reservations</h1>
     <ul>
-        {% for reservation in reservations %}
-        <li>
-            <span>Table {{ reservation.table.number }}</span> on 
-            <span>{{ reservation.date }}</span> at <span>{{ reservation.time }}</span>
-            (Guests: <span>{{ reservation.guests }}</span>)
-            <a href="{% url 'edit_reservation' reservation.id %}">Edit</a> |
-            <a href="{% url 'delete_reservation' reservation.id %}">Delete</a>
-        </li>
-        {% endfor %}
+        {% if reservations %}
+            {% for reservation in reservations %}
+            <li>
+                <span>Table {{ reservation.table.number }}</span> on 
+                <span>{{ reservation.date|date:"Y-m-d" }}</span> at <span>{{ reservation.time }}</span>
+                (Guests: <span>{{ reservation.guests }}</span>)
+                <a href="{% url 'edit_reservation' reservation.id %}">Edit</a> |
+                <a href="{% url 'delete_reservation' reservation.id %}">Delete</a>
+            </li>
+            {% endfor %}
+        {% else %}
+            <li>No Reservations found.</li>
+        {% endif %}   
     </ul>
 
-</body>
 </html>

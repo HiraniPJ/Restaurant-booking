@@ -129,7 +129,7 @@ class URLTests(BaseTestCase):
 
     def test_my_reservation_url_resolves(self):
         #Test my reservation URL resolves
-        url = reverse('my_reservation')
+        url = reverse('my_reservations')
         self.assertEqual(resolve(url).func.__name__, 'my_reservations')
 
     def test_edit_reservation_url_resolves(self):
