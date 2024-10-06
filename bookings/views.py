@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect # type: ignore
 from .models import Table
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm # type: ignore
+from django.contrib.auth import login # type: ignore
+from django.contrib.auth.decorators import login_required # type: ignore
 from .forms import ReservationForm
 from .models import Reservation
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404 # type: ignore
 
 
 # Create your views here.

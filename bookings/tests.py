@@ -1,8 +1,8 @@
-from django.test import TestCase
+from django.test import TestCase # type: ignore
 from .models import Table, Reservation
-from django.urls import reverse
-from django.urls import resolve
-from django.contrib.auth.models import User
+from django.urls import reverse # type: ignore
+from django.urls import resolve # type: ignore
+from django.contrib.auth.models import User # type: ignore
 from datetime import date, time
 from .forms import ReservationForm
 
