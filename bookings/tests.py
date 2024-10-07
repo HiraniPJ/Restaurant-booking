@@ -65,6 +65,14 @@ class ViewTests(BaseTestCase):
         self.assertEqual(new_reservation.date, date(2024, 10, 12))
         self.assertEqual(new_reservation.time, time(19, 0))
         self.assertEqual(new_reservation.guests, 4)    
+
+    def test_make_reservation_invalid(self):
+        # Test form submission with missing fields (invalid form)
+        response = self.client.post(reverse('make_reservation'), {
+            'date': '2024-10-12', 'time': '19:00', 'guests': 4      # Missing 'table'
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'table', 'This field is required.')  
             
     def test_my_reservations(self):
         # Test viewing a user's reservations
@@ -108,6 +116,24 @@ class ViewTests(BaseTestCase):
         self.assertEqual(self.reservation.date, date(2024, 10, 15))
         self.assertEqual(self.reservation.time, time(20, 0))
 
+    def test_edit_reservation_get(self):
+        # Test GET request for edit reservation page
+        response = self.client.get(reverse('edit_reservation', args=[self.reservation.id]))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'bookings/edit_reservation.html')
+        self.assertContains(response, "value=\"2024-10-10\"")  # Date of reservation in form
+
+    def test_edit_reservation_invalid(self):
+        # Test form submission with invalid guests (invalid form)
+        response = self.client.post(reverse('edit_reservation', args=[self.reservation.id]), {
+            'table': self.table.id,
+            'date': '2024-10-15',
+            'time': '20:00',
+            'guests': ''    # Missing Guests
+        })    
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'guests', 'This field is required.')  
+
     def test_delete_reservation(self):
         # Test deleting a reservation
         response = self.client.post(reverse('delete_reservation', args=[self.reservation.id]))
@@ -142,6 +168,16 @@ class SignupViewTests(BaseTestCase):
         # Check if user is logged in
         response = self.client.get(reverse('home'))
         self.assertContains(response, f"Welcome, {unique_username}")
+
+    def test_signup_view_post_invalid(self):
+        #Test form with non-matching passwords (invalid form)
+        response = self.client.post(reverse('signup'), {
+            'username': 'newuser',
+            'password1': 'Testpassword123', 
+            'password2': 'Testpassword456'  # Passwords don't match
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Your Passwords didn't match")   
         
 # Form Tests
 class FormTests(BaseTestCase):
