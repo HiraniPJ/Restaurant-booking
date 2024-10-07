@@ -1,16 +1,20 @@
 from django.test import TestCase # type: ignore
 from .models import Table, Reservation
-from django.urls import reverse # type: ignore
-from django.urls import resolve # type: ignore
+from django.urls import reverse, resolve # type: ignore
 from django.contrib.auth.models import User # type: ignore
 from datetime import date, time
 from .forms import ReservationForm
 
 
 
-#Base Test Case
+# Base Test Case
 class BaseTestCase(TestCase):
     def setUp(self):
+        # Clear previous data
+        User.objects.all().delete()
+        Table.objects.all().delete()
+        Reservation.objects.all().delete()
+
         # Create a test user and log in
         self.user = User.objects.create_user('testuser', 'testuser@example.com', 'password')
         self.client.login(username='testuser', password='password')
@@ -27,7 +31,7 @@ class BaseTestCase(TestCase):
             guests=2
         )
    
-#Model Tests
+# Model Tests
 class ModelTests(BaseTestCase):
     
     def test_reservation_creation(self):
@@ -39,7 +43,7 @@ class ModelTests(BaseTestCase):
         table = Table.objects.create(number=2, capacity=6)
         self.assertEqual(str(table), "Table 2 (Seats 6)")
 
-#View Tests
+# View Tests
 class ViewTests(BaseTestCase):
 
     def test_home_page(self):
@@ -51,29 +55,38 @@ class ViewTests(BaseTestCase):
     def test_make_reservation(self):
         # Test making a reservation
         response = self.client.post(reverse('make_reservation'), {
-            'table': self.table.id,
-            'date': '2024-10-12',
-            'time': '19:00',
-            'guests': 4
+            'table': self.table.id, 'date': '2024-10-12', 'time': '19:00', 'guests': 4
         })
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(Reservation.objects.count(), 2)
-
+        
+        # Verify reservation was created
+        new_reservation = Reservation.objects.last()
+        self.assertEqual(new_reservation.table, self.table)
+        self.assertEqual(new_reservation.date, date(2024, 10, 12))
+        self.assertEqual(new_reservation.time, time(19, 0))
+        self.assertEqual(new_reservation.guests, 4)    
+            
     def test_my_reservations(self):
         # Test viewing a user's reservations
         response = self.client.get(reverse('my_reservations'))
-        
         self.assertEqual(response.status_code, 200)
 
         #Print only the reservation part
         reservations = response.context['reservations']
-        for reservation in reservations:
-            print({
-                'Table': reservation.table.number,
-                'Date': reservation.date,
-                'Time': reservation.time,
-                'Guests': reservation.guests
-            })
+       # for reservation in reservations:
+        #    print({
+        #        'Table': reservation.table.number,
+        #        'Date': reservation.date,
+        #        'Time': reservation.time,
+        #        'Guests': reservation.guests
+        #    })
+
+        self.assertEqual(len(reservations), 1)
+        reservation = reservations[0]
+        self.assertEqual(reservation.table.number, 1)
+        self.assertEqual(reservation.date, date(2024, 10, 10))
+        self.assertEqual(reservation.time, time(18, 0))
+        self.assertEqual(reservation.guests, 2)
 
         # Specific reservation details
         self.assertContains(response, "Table 1")
@@ -100,8 +113,37 @@ class ViewTests(BaseTestCase):
         response = self.client.post(reverse('delete_reservation', args=[self.reservation.id]))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Reservation.objects.count(), 0)
+
+# Signup View Tests
+class SignupViewTests(BaseTestCase):
+    
+    def test_signup_view_get(self):
+        #Test rendering the signup form (GET request)
+        response = self.client.get(reverse('signup'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'bookings/signup.html')
+
+    def test_signup_view_post(self):
+        #username is unique
+        unique_username = 'testuser' + str(User.objects.count())
+
+        #Test rendering the signup form (POST request)
+        response = self.client.post(reverse('signup'), {
+            'username': unique_username, 
+            'password1': 'Testpassword123', 
+            'password2': 'Testpassword123'
+        })
+        self.assertEqual(response.status_code, 302)
+
+        # Check user is created
+        new_user = User.objects.get(username=unique_username)
+        self.assertIsNotNone(new_user)
+
+        # Check if user is logged in
+        response = self.client.get(reverse('home'))
+        self.assertContains(response, f"Welcome, {unique_username}")
         
-#Form Tests
+# Form Tests
 class FormTests(BaseTestCase):
 
     def test_reservation_form_valid(self):
@@ -125,8 +167,20 @@ class FormTests(BaseTestCase):
         }
         form = ReservationForm(data=form_data)
         self.assertFalse(form.is_valid())
-
-#URL Tests
+    
+    def test_reservation_form_invalid_guests(self):
+        #Test if form rejects invalid number of guests
+        form_data = {
+            'table': self.table.id,
+            'date': '2024-10-10',
+            'time': '18:00',
+            'guests': 0
+        }
+        form = ReservationForm(data=form_data)
+        self.assertFalse(form.is_valid())
+        self.assertIn('guests', form.errors)
+    
+# URL Tests
 class URLTests(BaseTestCase):
 
     def test_home_url_resolves(self):
