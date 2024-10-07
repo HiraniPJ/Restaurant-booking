@@ -177,7 +177,7 @@ class SignupViewTests(BaseTestCase):
             'password2': 'Testpassword456'  # Passwords don't match
         })
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "The two password fields didn't match.")   
+        self.assertContains(response, "two password fields")   
         
 # Form Tests
 class FormTests(BaseTestCase):

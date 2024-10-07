@@ -11,8 +11,16 @@
         {% csrf_token %}
         {{ form.as_p }}
 
-        {% if errors %}
-        <p class="error">{{ error }}</p>
+        {% if form.errors %}
+            <div class="errorlist">
+                <ul>
+                    {% for field, errors in form.errors.items %}
+                        {% for error in errors %}
+                            <li>{{ field }}: {{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
         {% endif %}
 
         <button type="submit" class="btn btn-primary">Sign Up</button>

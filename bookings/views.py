@@ -22,10 +22,10 @@ def signup(request):
       user = form.save()
       login(request, user)
       return redirect('home')
-    else: 
-       return render(request, 'bookings/signup.html', {'form': form, 'errors': 'There was an issue with your submission. Please check the fields.'})
+    else:
+       return render(request, 'bookings/signup.html', {'form': form})
   else:
-    form = UserCreationForm()
+      form = UserCreationForm()
   return render(request, 'bookings/signup.html', {'form': form})
 
 @login_required
