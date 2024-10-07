@@ -10,15 +10,11 @@
     <form method="post" class="form-group">
         {% csrf_token %}
         {{ form.as_p }}
+
         {% if errors %}
-        <ul class="errorlist">
-            {% for field, error_list in errors.items %}
-                {% for error in error_list %}
-                    <li>{{ field }}: {{ error }}</li>
-                {% endfor %}
-            {% endfor %}
-        </ul>
+        <p class="error">{{ error }}</p>
         {% endif %}
+
         <button type="submit" class="btn btn-primary">Sign Up</button>
     </form>
     <p>Already have an account? <a href="{% url 'login' %}">Login here</a>.</p>
