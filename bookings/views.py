@@ -23,7 +23,7 @@ def signup(request):
       login(request, user)
       return redirect('home')
     else: 
-       print(form.errors)
+       return render(request, 'bookings/signup.html', {'form': form, 'errors': form.errors})
   else:
     form = UserCreationForm()
   return render(request, 'bookings/signup.html', {'form': form})
