@@ -23,7 +23,7 @@ def signup(request):
       login(request, user)
       return redirect('home')
     else: 
-       return render(request, 'bookings/signup.html', {'form': form, 'errors': form.errors})
+       return render(request, 'bookings/signup.html', {'form': form, 'errors': 'There was an issue with your submission. Please check the fields.'})
   else:
     form = UserCreationForm()
   return render(request, 'bookings/signup.html', {'form': form})
@@ -39,7 +39,7 @@ def make_reservation(request):
             return redirect('home')
   else:
         form = ReservationForm()
-  return render(request, 'bookings/make_reservation.html', {'form': form})
+  return render(request, 'bookings/make_reservation.html', {'form': form, 'error': 'There was an issue with your submission. Please check the fields.'})
 
 @login_required
 def my_reservations(request):
@@ -62,6 +62,8 @@ def edit_reservation(request, reservation_id):
      if form.is_valid():
         form.save()
         return redirect('my_reservations')
+     else:
+        return render(request, 'bookings/edit_reservation.html', {'form': form, 'reservation': reservation, 'error': 'There was an issue with your submission. Please check the fields.'})
   else: 
       form = ReservationForm(instance=reservation)
   return render(request, 'bookings/edit_reservation.html', {'form': form, 'reservation': reservation})    
