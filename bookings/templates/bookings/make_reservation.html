@@ -6,11 +6,54 @@
     <title>Book a Table</title>
 </head>
 <body>
-    <h1 class ="text-center">Book a Table at Mint Restaurant</h1>
-    <form method="post" class="form-group">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Reserve</button>
-    </form>
+    {% extends 'bookings/base.html' %}
+
+    {% block content %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Book a Table at Mint Restaurant</h1>
+        <p class="text-center">Choose a table and make a reservation by filling out the form below.</p>
+    
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <!-- Form Start -->
+                        <form method="post" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            
+                            <!-- Render the form fields using Bootstrap classes -->
+                            {{ form.as_p }}
+    
+                            <!-- Submit Button -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success btn-lg mt-3">Reserve</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Optional: Add jQuery for form validation (Bootstrap native) -->
+    <script>
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                var forms = document.getElementsByClassName('needs-validation');
+                Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+    {% endblock %}
+    
 </body>
 </html>

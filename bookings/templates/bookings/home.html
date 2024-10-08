@@ -11,22 +11,40 @@
     {% block content %}
     <div class="container mt-5">
         <h1 class="text-center">Welcome to Mint Restaurant</h1>
-            <p class="text-center">Check out our available tables below and book your spot!</p>
-
-            <div class="row">
+        <p class="text-center">Check out our available tables below and book your spot!</p>
+    
+        <!-- Make Reservation Button -->
+        <div class="text-center mb-4">
+            <a href="{% url 'make_reservation' %}" class="btn btn-primary btn-lg">Make a Reservation</a>
+        </div>
+    
+        <!-- Table Cards -->
+        <div class="row">
+            {% if tables %}
                 {% for table in tables %}
-                <div class="col-md-4">
-                    <div class="card mb-4">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
                         <div class="card-body">
-                            <h5 class="card-title">Table {{ table.number }}</h5>
-                            <p  class="card-text">Seats: {{ table.capacity }}</p>
+                            <h5 class="card-title text-center">Table {{ table.number }}</h5>
+                            <p class="card-text text-center">Seats: {{ table.capacity }}</p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="{% url 'make_reservation' %}" class="btn btn-success">Book Now</a>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
-            </div>
+            {% else %}
+                <div class="col-12">
+                    <div class="alert alert-warning text-center" role="alert">
+                        No tables available at the moment. Please check back later!
+                    </div>
+                </div>
+            {% endif %}
+        </div>
     </div>
-        {% endblock %}
+    {% endblock %}
+    
 </body>
 </html>
 

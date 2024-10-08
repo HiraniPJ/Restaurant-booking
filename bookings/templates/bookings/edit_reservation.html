@@ -6,12 +6,58 @@
     <title>Edit Reservation for Table</title>
 </head>
 <body>
-    <p>Edit Reservation for Table {{ reservation.table.number }}</p>
-    <form method="post" class="form-group">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-    </form>
-    <a href="{% url 'my_reservations' %}">Cancel</a>
+    {% extends 'bookings/base.html' %}
+
+    {% block content %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Edit Reservation for Table {{ reservation.table.number }}</h1>
+    
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <p class="text-center">Please update the details of your reservation below:</p>
+    
+                        <!-- Form Start -->
+                        <form method="post" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            {{ form.as_p }}
+    
+                            <!-- Save Changes Button -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success btn-lg mt-3">Save Changes</button>
+                            </div>
+                        </form>
+    
+                        <!-- Cancel Link -->
+                        <div class="text-center mt-3">
+                            <a href="{% url 'my_reservations' %}" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Optional: Add jQuery for form validation (Bootstrap native) -->
+    <script>
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                var forms = document.getElementsByClassName('needs-validation');
+                Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+    {% endblock %}
+    
 </body>
 </html>
