@@ -72,7 +72,7 @@ class ViewTests(BaseTestCase):
             'date': '2024-10-12', 'time': '19:00', 'guests': 4      # Missing 'table'
         })
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "There was an issue with your submission. Please check the fields.")  
+        self.assertContains(response, "This field is required.")  
             
     def test_my_reservations(self):
         # Test viewing a user's reservations
@@ -132,7 +132,7 @@ class ViewTests(BaseTestCase):
             'guests': ''    # Missing Guests
         })    
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "There was an issue with your submission. Please check the fields.")  
+        self.assertContains(response, "This field is required.")  
 
     def test_delete_reservation(self):
         # Test deleting a reservation
@@ -177,7 +177,7 @@ class SignupViewTests(BaseTestCase):
             'password2': 'Testpassword456'  # Non-matching passwords
         })
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "The two password fields didn't match.")   
+        self.assertContains(response, "The two password fields didn’t match.")   
         
 # Form Tests
 class FormTests(BaseTestCase):
