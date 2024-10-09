@@ -30,12 +30,12 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True 
 
-ALLOWED_HOSTS = ['mint-restaurant-app.herokuapp.com', 'localhost', '8000-hiranipj-restaurantbook-6bza5mp4cky.ws-eu116.gitpod.io'
+ALLOWED_HOSTS = ['mint-restaurant-app-e407d965e4db.herokuapp.com', 'localhost', '8000-hiranipj-restaurantbook-6bza5mp4cky.ws-eu116.gitpod.io'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
    'https://8000-hiranipj-restaurantbook-6bza5mp4cky.ws-eu116.gitpod.io',  # Gitpod URL
-  'https://mint-restaurant-app.herokuapp.com'  # Heroku URL
+    'mint-restaurant-app-e407d965e4db.herokuapp.com'  # Heroku URL
 ]
 
 LOGIN_URL = "/login/"
