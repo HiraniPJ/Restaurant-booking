@@ -172,7 +172,9 @@ Cloudinary Image Upload Bug:
 Solve: CSRF_TRUSTED_ORIGINS = [ 'https://8000-hiranipj-restaurantbook-6bza5mp4cky.ws-eu116.gitpod.io', # Gitpod URL 'https://mint-restaurant-app.herokuapp.com' # Heroku URL ]
 
 Login error: ![image](https://github.com/user-attachments/assets/1cfc13cc-9173-46a8-9f16-8a84ee2cdf08)
+
 Enetered include accounts to take care of all authentication urls, but it did not fix the issue. 
+
 ![image](https://github.com/user-attachments/assets/c49d763e-d739-4594-827e-8c14126ab663)
 
 created new url paths for login and of the all the other html files
