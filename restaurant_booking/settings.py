@@ -32,7 +32,7 @@ CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False 
 
-ALLOWED_HOSTS = [os.environ.get("HEROKU_HOSTS"), 'localhost']
+ALLOWED_HOSTS = ['mint-restaurant-app-e407d965e4db.herokuapp.com', 'localhost']
 
 #CSRF_TRUSTED_ORIGINS = [
  #  'https://8000-hiranipj-restaurantbook-6bza5mp4cky.ws-eu116.gitpod.io',  # Gitpod URL
