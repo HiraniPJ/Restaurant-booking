@@ -16,3 +16,19 @@
     }, false);
 })();
 
+// Disable form submission button until all fields are filled
+
+document.addEventListener('DOMContentLoaded', function() {
+    var submitButton = document.querySelector('button[type="submit"]');
+    var form = document.querySelector('.needs-validation');
+
+    if (form) {
+        form.addEventListener('input', function() {
+            if (form.checkValidity()) {
+                submitButton.disabled = false;
+            } else {
+                submitButton.disabled = true;
+            }
+        });
+    }
+});
