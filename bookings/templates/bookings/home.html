@@ -8,7 +8,7 @@
         {% if "placeholder" in Banner.banner_image.url %}
         <img src="{% static 'images/restaurant-banner.jpg' %}" alt="placeholder image" class="img-fluid w-100">
         {% else %}
-        <img class="card-img-top" src=" {{ Banner.banner_image.url }}"
+        <img class="card-img-top" src=" {{ Banner.banner_image.url }}">
         alt="{{ Banner.title }}">
       {% endif %}
     </div>
@@ -24,33 +24,6 @@
         </div>
     </div>
 </div> 
-    
-        <!-- Table Cards 
-        <div class="row">
-            {% if tables %}
-                {% for table in tables %}
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">Table {{ table.number }}</h5>
-                            <p class="card-text text-center">Seats: {{ table.capacity }}</p>
-                        </div>
-                        <div class="card-footer text-center">
-                            <a href="{% url 'make_reservation' %}" class="btn btn-success">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            {% else %}
-                <div class="col-12">
-                    <div class="alert alert-warning text-center" role="alert">
-                        No tables available at the moment. Please check back later!
-                    </div>
-                </div>
-            {% endif %}
-        </div> -->
-
-
     
     {% endblock %}
    
