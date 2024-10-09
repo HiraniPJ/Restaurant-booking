@@ -32,6 +32,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", os.environ.get("ALLOWED_HOSTS") ]
 
+LOGIN_URL = "/login/"
 
 # Application definition
 
