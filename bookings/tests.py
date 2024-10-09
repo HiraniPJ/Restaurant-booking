@@ -4,7 +4,7 @@ from django.urls import reverse, resolve # type: ignore
 from django.contrib.auth.models import User # type: ignore
 from datetime import date, time
 from .forms import ReservationForm
-
+from django.contrib.auth.views import LogoutView
 
 
 # Base Test Case
@@ -140,6 +140,21 @@ class ViewTests(BaseTestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Reservation.objects.count(), 0)
 
+# logout test (GET)
+    def test_logout(self):
+        self.client.login(username='testuser', password='password')
+        response = self.client.get(reverse('logout'))
+        self.assertRedirects(response, reverse('home'))
+        self.assertNotIn('_auth_user_id', self.client.session)   
+
+# logout test (POST)
+    def test_logout(self):
+        self.client.login(username='testuser', password='password')
+        response = self.client.post(reverse('logout'))
+        self.assertRedirects(response, reverse('home'))
+        response = self.client.get(reverse('home'))
+        self.assertNotContains(response, 'Welcome, testuser')     
+
 # Signup View Tests
 class SignupViewTests(BaseTestCase):
     
@@ -149,25 +164,35 @@ class SignupViewTests(BaseTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'bookings/signup.html')
 
-    def test_signup_view_post(self):
+    #def test_signup_view_post(self):
         #username is unique
-        unique_username = 'testuser' + str(User.objects.count())
+        #unique_username = 'testuser' + str(User.objects.count())
 
         #Test rendering the signup form (POST request)
-        response = self.client.post(reverse('signup'), {
-            'username': unique_username, 
-            'password1': 'Testpassword123', 
-            'password2': 'Testpassword123'
-        })
-        self.assertEqual(response.status_code, 302)
+        #response = self.client.post(reverse('signup'), {
+        #    'username': unique_username, 
+        #    'password1': 'Testpassword123', 
+        #    'password2': 'Testpassword123'
+       # })
+       # self.assertEqual(response.status_code, 302)
 
         # Check user is created
-        new_user = User.objects.get(username=unique_username)
-        self.assertIsNotNone(new_user)
+        #new_user = User.objects.get(username=unique_username)
+       # self.assertIsNotNone(new_user)
 
         # Check if user is logged in
+       # response = self.client.get(reverse('home'))
+       # self.assertContains(response, f"Welcome, {unique_username}")
+
+    def test_signup_view_post(self):
+        response = self.client.post(reverse('signup'), {
+        'username': 'testuser1',
+        'password1': 'testpassword',
+        'password2': 'testpassword',
+    })
+        self.assertRedirects(response, reverse('home'))
         response = self.client.get(reverse('home'))
-        self.assertContains(response, f"Welcome, {unique_username}")
+        self.assertContains(response, 'Welcome, testuser1')
 
     def test_signup_view_post_invalid(self):
         #Test form with non-matching passwords (invalid form)
@@ -243,3 +268,11 @@ class URLTests(BaseTestCase):
         #Test delete reservation URL resolves
         url = reverse('delete_reservation', args=[1])
         self.assertEqual(resolve(url).func.__name__, 'delete_reservation')
+
+    def test_signup_url_resolves(self):
+        url = reverse('signup')
+        self.assertEqual(resolve(url).func.__name__, 'signup')
+
+    def test_logout_url_resolves(self):
+        url = reverse('logout')
+        self.assertEqual(resolve(url).func.view_class, LogoutView)

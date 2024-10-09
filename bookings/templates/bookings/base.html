@@ -37,6 +37,7 @@
                             <a class="nav-link" href="{% url 'my_reservations' %}">My Reservations</a>
                         </li>
                         <li class="nav-item">
+                            <span class="navbar-text">Welcome, {{ user.username }}!</span>
                             <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                         </li>
                     {% else %}
@@ -54,7 +55,8 @@
 
     <!-- Page Content -->
     <div class="content py-4">
-        {% block content %}{% endblock %}
+        {% block content %}
+        {% endblock %}
     </div>
 
     <!-- Footer -->
