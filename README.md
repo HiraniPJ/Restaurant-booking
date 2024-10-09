@@ -90,6 +90,7 @@ Mint Restaurant can be easily used through the following steps:
 ## Design
 
 ## ERD
+![image](https://github.com/user-attachments/assets/5e9fbc76-0e5a-4e2c-a9e9-e7bce7afcf86)
 
 ## Wireframes
 ### Home Page
@@ -130,19 +131,28 @@ Mint Restaurant can be easily used through the following steps:
 ----------
 
 ## Testing
-For detailed information on testing, refer to the Testing.md file.
+For detailed information on testing, refer to the [TESTING.md](TESTING.md)
 
 ## Manual Testing
 ### Home Page
 |Test	|Outcome	|Evidence|
 |Logo and navigation links work correctly|	Pass|	Clicking the logo redirects to the homepage, navigation links work properly.|
+![image](https://github.com/user-attachments/assets/ddf4f1d1-cba3-4ec3-a543-67ea0898a280)
+
 |Reservation form displays correctly on various devices|	Pass|	Tested on different screen sizes, form elements display consistently.|
+![image](https://github.com/user-attachments/assets/ebcc24f8-47d8-4033-8fa5-3547ebf7426b)
+
 |User login and logout functionality|	Pass|	Tested the login and logout process for multiple users.|
 
 ### Reservation Page
 |Test	|Outcome	|Evidence|
 |User can submit a valid reservation	|Pass	|Form validation ensures that all required fields are filled before submission.|
+![image](https://github.com/user-attachments/assets/8cc0813b-4419-4e7c-9ef6-4903f122a69c)
+
 |User can edit and delete their reservation|	Pass|	Edit and delete functionality works as expected.|
+![image](https://github.com/user-attachments/assets/321a7296-b44c-4478-a38e-c1e40a3fb3ac)
+
+![image](https://github.com/user-attachments/assets/707eb0eb-6b26-4b10-8408-663d81be7ab4)
 
 ## User Story Testing
 Each user story has been successfully tested. Below are some examples:
@@ -196,6 +206,7 @@ Restaurant banner images: Unsplash
 
 #### Acknowledgements
 Special thanks to my mentor and colleagues for their support and guidance during the development of this project.
+https://djecrety.ir/ - 
 
 ---------------
 ## Conclusion
