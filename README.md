@@ -11,7 +11,7 @@ The project is implemented using the Django framework and includes functionaliti
 
 ------
 
-##Contents
+## Contents
 * [About Mint Restaurant](#Introduction) 
 * [How To Use It](#how-to-use-it)
 * [User Story](#User-Stories)
