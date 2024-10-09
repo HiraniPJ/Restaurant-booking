@@ -166,9 +166,17 @@ Result: Fail – Logout functionality does not works correctly and redirects the
 --------------- 
 
 ## Solved Bugs
-Cloudinary Image Upload Bug:
-Fixed by ensuring request.FILES is correctly handled in the form submission.
-Reservation Deletion Bug:
+Cloudinary Image Upload Bug: 
+![image](https://github.com/user-attachments/assets/f3664de1-7e5c-4b3f-ad85-75990eacedd5)
+
+Solve: CSRF_TRUSTED_ORIGINS = [ 'https://8000-hiranipj-restaurantbook-6bza5mp4cky.ws-eu116.gitpod.io', # Gitpod URL 'https://mint-restaurant-app.herokuapp.com' # Heroku URL ]
+
+Login error: ![image](https://github.com/user-attachments/assets/1cfc13cc-9173-46a8-9f16-8a84ee2cdf08)
+Enetered include accounts to take care of all authentication urls, but it did not fix the issue. 
+![image](https://github.com/user-attachments/assets/c49d763e-d739-4594-827e-8c14126ab663)
+
+created new url paths for login and of the all the other html files
+
 Users were unable to delete reservations due to a missing CSRF token. This was resolved by adding {% csrf_token %} to the delete form.
 
 ---------------
@@ -206,7 +214,6 @@ Restaurant banner images: Unsplash
 
 #### Acknowledgements
 Special thanks to my mentor and colleagues for their support and guidance during the development of this project.
-https://djecrety.ir/ - 
 
 ---------------
 ## Conclusion
