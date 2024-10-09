@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mint Restaurant</title>
-</head>
-<body>
-    {% extends 'bookings/base.html' %}
+{% extends 'bookings/base.html' %}
 
-    {% block content %}
+{% block content %}
+<div class="container-fluid p-0">
+    <!-- Banner Section -->
+    <div class="banner">
+        <img src="{% static 'images/restaurant-banner.jpg' %}" alt="Mint Restaurant Banner" class="img-fluid w-100">
+    </div>
+
+    <!--welcome message section-->
     <div class="container mt-5">
         <h1 class="text-center">Welcome to Mint Restaurant</h1>
         <p class="text-center">Check out our available tables below and book your spot!</p>
@@ -17,8 +16,9 @@
         <div class="text-center mb-4">
             <a href="{% url 'make_reservation' %}" class="btn btn-primary btn-lg">Make a Reservation</a>
         </div>
+    </div>
     
-        <!-- Table Cards -->
+        <!-- Table Cards 
         <div class="row">
             {% if tables %}
                 {% for table in tables %}
@@ -41,8 +41,10 @@
                     </div>
                 </div>
             {% endif %}
-        </div>
-    </div>
+        </div> -->
+
+
+    
     {% endblock %}
     
 </body>
