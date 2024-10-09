@@ -4,7 +4,7 @@ from django.urls import reverse, resolve # type: ignore
 from django.contrib.auth.models import User # type: ignore
 from datetime import date, time
 from .forms import ReservationForm
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth.views import LogoutView # type: ignore
 
 
 # Base Test Case
