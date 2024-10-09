@@ -29,4 +29,5 @@ urlpatterns = [
     path('my_reservations/', views.my_reservations, name='my_reservations'),
     path('delete_reservation/<int:reservation_id>/', views.delete_reservation, name='delete_reservation'),
     path('edit_reservation/<int:reservation_id>/', views.edit_reservation, name='edit_reservation'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='logout.html'), name='logout')
 ]
