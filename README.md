@@ -26,7 +26,6 @@ The project is implemented using the Django framework and includes functionaliti
 * [Testing](#testing)
     * [Manual Testing](#manual-testing)
     * [User Story Testing](#user-story-testing)
-    * [Validator](#validatiors)
 * [Solved Bugs](#solved-bugs)
 * [Deployment](#Deployment-Incomplete!!!)
     * [Cloning & Forking](#cloning--forking)
@@ -152,13 +151,7 @@ User Story: "I want to make a reservation easily."
 Result: Pass – Users can make a reservation using the dedicated form, and the booking is stored in the database.
 
 User Story: "I want to log out securely."
-Result: Pass – Logout functionality works correctly and redirects the user to the homepage.
-
-## Validators
-HTML5: No issues detected.
-CSS3: No issues detected with the W3C CSS Validator.
-Python (PEP8): Passed with no major issues.
-JavaScript (JSHint): All scripts validated successfully.
+Result: Fail – Logout functionality does not works correctly and redirects the user to the homepage.
 
 --------------- 
 
