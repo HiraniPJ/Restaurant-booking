@@ -34,7 +34,7 @@ ALLOWED_HOSTS = ['mint-restaurant-app.herokuapp.com', 'localhost', '8000-hiranip
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-   #'https://8000-hiranipj-restaurantbook-6bza5mp4cky.ws-eu116.gitpod.io',  # Gitpod URL
+   'https://8000-hiranipj-restaurantbook-6bza5mp4cky.ws-eu116.gitpod.io',  # Gitpod URL
   'https://mint-restaurant-app.herokuapp.com'  # Heroku URL
 ]
 
