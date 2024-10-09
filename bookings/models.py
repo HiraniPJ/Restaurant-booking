@@ -1,8 +1,16 @@
 from django.db import models # type: ignore
 from django.contrib.auth.models import User # type: ignore
+from cloudinary.models import CloudinaryField
+
 
 # Create your models here.
 
+class RestaurantBanner(models.Model):
+    title = models.CharField(max_length=100)
+    image = CloudinaryField('image')
+
+    def __str__(self):
+        return self.title    
 
 class Table(models.Model):
     number = models.IntegerField()
