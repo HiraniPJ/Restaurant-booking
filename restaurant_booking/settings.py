@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True 
+DEBUG = False 
 
 ALLOWED_HOSTS = [os.environ.get("HEROKU_HOSTS"), 'localhost']
 
