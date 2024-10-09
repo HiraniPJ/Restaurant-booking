@@ -8,7 +8,7 @@
         {% if "placeholder" in Banner.banner_image.url %}
         <img src="{% static 'images/restaurant-banner.jpg' %}" alt="placeholder image" class="img-fluid w-100">
         {% else %}
-        <img class="card-img-top" src=" {{ Banner.banner_image.url }}">
+        <img class="card-img-top" src=" {{ Banner.banner_image.url }}"
         alt="{{ Banner.title }}">
       {% endif %}
     </div>
