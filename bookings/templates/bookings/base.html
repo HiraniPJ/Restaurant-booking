@@ -33,12 +33,14 @@
                         <a class="nav-link" href="{% url 'make_reservation' %}">Make a Reservation</a>
                     </li>
                     {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'my_reservations' %}">My Reservations</a>
-                        </li>
-                        <li class="nav-item">
-                            <span class="navbar-text">Welcome, {{ user.username }}!</span>
-                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Welcome, {{ user.username }}!
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{% url 'my_reservations' %}">My Reservations</a></li>
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                            </ul>
                         </li>
                     {% else %}
                         <li class="nav-item">
