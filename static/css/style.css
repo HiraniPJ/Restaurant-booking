@@ -20,6 +20,12 @@ body {
     color: #00af6c;
 }
 
+.banner-img {
+    max-height: 500px;
+    width: auto;
+    object-fit: cover;
+}
+
 /* Form Styling */
 .form-group {
     margin-bottom: 1.5rem;
