@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Reservation for Table</title>
-</head>
-<body>
-    {% extends 'bookings/base.html' %}
-
+{% extends 'bookings/base.html' %}
+{% load static %}
     {% block content %}
     <div class="container mt-5">
         <h1 class="text-center mb-4">Edit Reservation for Table {{ reservation.table.number }}</h1>
@@ -42,7 +34,7 @@
     <!-- jQuery for form validation -->
 
     <script src="{% static 'js/script.js' %}"></script>
-    
+
     {% endblock %}
     
 </body>
