@@ -40,7 +40,7 @@ ALLOWED_HOSTS = ['mint-restaurant-app-e407d965e4db.herokuapp.com']
 #]
 
 LOGIN_URL = "/login/"
-LOGOUT_REDIRECT_URL = '/logout/'
+LOGOUT_REDIRECT_URL = 'home'
 
 # Application definition
 
