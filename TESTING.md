@@ -73,8 +73,8 @@ JavaScript code was passed through JSHint, with no major errors detected. The fo
 
 ### Python (PEP8 Compliance)
 The Python code adheres to PEP8 standards. CI Python Linter. Linting was performed using Flake8, and the following minor warnings were ignored:
- - Lines exceeding 80 characters (handled via line breaks)
- - Unused variables (reserved for potential future features)
+![image](https://github.com/user-attachments/assets/11476257-e47a-4fa3-a79a-2c1120dfc9e9)
+
 
 ## Lighthouse/Accessibility Testing
 Lighthouse was used to check the performance, accessibility, best practices, and SEO of the application. Results are listed below.
