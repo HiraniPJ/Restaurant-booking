@@ -19,6 +19,8 @@ from django.contrib.auth import views as auth_views # type: ignore
 from django.urls import path # type: ignore
 from bookings import views # type: ignore
 from django.contrib.auth.views import LogoutView # type: ignore
+from django.conf import settings # type: ignore
+from django.conf.urls.static import static # type: ignore
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,5 +31,8 @@ urlpatterns = [
     path('my_reservations/', views.my_reservations, name='my_reservations'),
     path('delete_reservation/<int:reservation_id>/', views.delete_reservation, name='delete_reservation'),
     path('edit_reservation/<int:reservation_id>/', views.edit_reservation, name='edit_reservation'),
-    path('logout/', LogoutView.as_view(next_page='home'), name='logout'),
-]
+    path('logout/', LogoutView.as_view(template_name='bookings/logout.html'), name='logout'),
+] 
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

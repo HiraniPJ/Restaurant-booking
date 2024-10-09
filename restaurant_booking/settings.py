@@ -27,16 +27,17 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
+CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True 
 
-ALLOWED_HOSTS = ['mint-restaurant-app-e407d965e4db.herokuapp.com', 'localhost', '8000-hiranipj-restaurantbook-6bza5mp4cky.ws-eu116.gitpod.io'
-]
+ALLOWED_HOSTS = ['mint-restaurant-app-e407d965e4db.herokuapp.com', 'localhost']
 
-CSRF_TRUSTED_ORIGINS = [
-   'https://8000-hiranipj-restaurantbook-6bza5mp4cky.ws-eu116.gitpod.io',  # Gitpod URL
-    'mint-restaurant-app-e407d965e4db.herokuapp.com'  # Heroku URL
-]
+#CSRF_TRUSTED_ORIGINS = [
+ #  'https://8000-hiranipj-restaurantbook-6bza5mp4cky.ws-eu116.gitpod.io',  # Gitpod URL
+  #  'mint-restaurant-app-e407d965e4db.herokuapp.com'  # Heroku URL
+#]
 
 LOGIN_URL = "/login/"
 LOGOUT_URL = "/logout/"

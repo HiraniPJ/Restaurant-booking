@@ -1,6 +1,6 @@
 from django.db import models # type: ignore
 from django.contrib.auth.models import User # type: ignore
-from cloudinary.models import CloudinaryField
+from cloudinary.models import CloudinaryField # type: ignore
 
 
 # Create your models here.
