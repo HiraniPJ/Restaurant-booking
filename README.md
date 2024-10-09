@@ -94,10 +94,12 @@ Mint Restaurant can be easily used through the following steps:
 
 ## Wireframes
 ### Home Page
-<details> <summary>Click to view</summary> <img src="img_src_link_here" alt="Home Page Wireframe"> </details>
+![image](https://github.com/user-attachments/assets/17c4cdf2-6173-4d31-ad59-6047e44130dc)
+
 
 ### Reservation Page
-<details> <summary>Click to view</summary> <img src="img_src_link_here" alt="Reservation Page Wireframe"> </details>
+![image](https://github.com/user-attachments/assets/e7506a99-c567-42c5-8311-9b9636a36fde)
+
 
 -------------
 ## Features
