@@ -32,7 +32,7 @@ CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True 
 
-ALLOWED_HOSTS = ['mint-restaurant-app-e407d965e4db.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = [os.environ.get("HEROKU_HOSTS"), 'localhost']
 
 #CSRF_TRUSTED_ORIGINS = [
  #  'https://8000-hiranipj-restaurantbook-6bza5mp4cky.ws-eu116.gitpod.io',  # Gitpod URL
@@ -40,7 +40,7 @@ ALLOWED_HOSTS = ['mint-restaurant-app-e407d965e4db.herokuapp.com', 'localhost']
 #]
 
 LOGIN_URL = "/login/"
-LOGOUT_URL = "/logout/"
+LOGOUT_REDIRECT_URL = '/logout/'
 
 # Application definition
 
@@ -50,8 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'cloudinary_storage', 
     'django.contrib.staticfiles',
+    'cloudinary_storage', 
     'cloudinary',
     'bookings',
 ]

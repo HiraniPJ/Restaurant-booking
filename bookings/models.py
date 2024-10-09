@@ -5,12 +5,15 @@ from cloudinary.models import CloudinaryField # type: ignore
 
 # Create your models here.
 
-class RestaurantBanner(models.Model):
-    title = models.CharField(max_length=100)
-    image = CloudinaryField('image')
+class Banner(models.Model):
+    title = models.CharField(max_length=100, unique=True)
+   # image = CloudinaryField('image')
+    banner_image = CloudinaryField('image', default='placeholder')
 
     def __str__(self):
         return self.title    
+
+    
 
 class Table(models.Model):
     number = models.IntegerField()

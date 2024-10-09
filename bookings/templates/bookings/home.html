@@ -5,7 +5,12 @@
 <div class="container-fluid p-0">
     <!-- Banner Section -->
     <div class="banner">
-        <img src="{% static 'images/restaurant-banner.jpg' %}" alt="Mint Restaurant Banner" class="img-fluid w-100">
+        {% if "placeholder" in Banner.banner_image.url %}
+        <img src="{% static 'images/restaurant-banner.jpg' %}" alt="placeholder image" class="img-fluid w-100">
+        {% else %}
+        <img class="card-img-top" src=" {{ Banner.banner_image.url }}"
+        alt="{{ Banner.title }}">
+      {% endif %}
     </div>
 
     <!--welcome message section-->
