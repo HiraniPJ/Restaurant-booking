@@ -30,7 +30,13 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mint-restaurant-app.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['mint-restaurant-app.herokuapp.com', 'localhost', '8000-hiranipj-restaurantbook-6bza5mp4cky.ws-eu116.gitpod.io'
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-hiranipj-restaurantbook-6bza5mp4cky.ws-eu116.gitpod.io',  # Gitpod URL
+    'https://mint-restaurant-app.herokuapp.com'  # Heroku URL
+]
 
 LOGIN_URL = "/login/"
 
@@ -150,3 +156,4 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
