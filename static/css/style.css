@@ -1,0 +1,86 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #344039;
+}
+
+/* Navbar Customization */
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #495751;
+    transition: color 0.3s ease;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #00af6c;
+}
+
+/* Form Styling */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+input.form-control, select.form-control, textarea.form-control {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+}
+
+/* Button Styling */
+button.btn-primary {
+    background-color: #00af6c;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+button.btn-primary:hover {
+    background-color: #00a063;
+}
+
+/* Card Styling */
+.card {
+    border-radius: 10px;
+    border: none;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #344039;
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+footer a {
+    color: #ffffff;
+}
+
+footer a:hover {
+    color: #00af6c;
+    text-decoration: none;
+}
+
+/* Alert Styling */
+.alert {
+    border-radius: 5px;
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+
+    button.btn-primary {
+        width: 100%;
+        margin-top: 1rem;
+    }
+}
