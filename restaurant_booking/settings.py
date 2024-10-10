@@ -35,7 +35,7 @@ DEBUG = False
 ALLOWED_HOSTS = ['mint-restaurant-app-e407d965e4db.herokuapp.com']
 
 CSRF_TRUSTED_ORIGINS = [
-
+'hiranipj-restaurantbook-6bza5mp4cky.ws-eu116.gitpod.io', 
  'mint-restaurant-app-e407d965e4db.herokuapp.com'  # Heroku URL
 ]
 
